@@ -1,0 +1,73 @@
+<p>
+ <strong>First name:</strong>
+ <%= current_user.first_name %>
+</p>
+
+<p>
+ <strong>Last name:</strong>
+ <%= current_user.last_name %>
+</p>
+
+<p>
+ <strong>Email:</strong>
+ <%= current_user.email %>
+</p>
+
+<p>
+ <strong>User name:</strong>
+ <%= current_user.username %>
+</p>
+
+<p>
+ <strong>About me:</strong>
+ <%= current_user.about_you %>
+</p>
+
+<p>
+ <strong>Profile photo:</strong>
+ <%= current_user.user_pic %>
+</p>
+
+<a href="/users/edit"> Edit Profile</a>
+
+
+<% unless @posts.nil? %>
+<div>
+
+  <ul class="list-group">
+    <% @posts.each do |post| %>
+      <li class="list-group-item">
+        <div class="post">
+          <h3><a href="/posts/<%= post.id %>"><%= post.post_title %></a></h3>
+          <p>When we get Image working</p>
+          <h4>Posted by: <%= User.find(post.user_id) %></h4>
+          <h5>Location: <%= post.location %></h5>
+          <h6>Target Completion Date: <%= post.date %></h6>
+          <p><%= post.description %></p>
+        </div>
+        <% if current_user %>
+            <% if post.likes.find { |l| l.user_id == current_user.id }%>
+              <p> Liked! </p>
+              <form method="post" action="/disliked_in_show">
+                <input type="hidden" name="post_id" value="<%= post.id %>">
+                <input type="submit" class="btn btn-sm btn-primary" value="Dislike">
+              </form>
+            <% else %>
+              <form method="post" action="/liked_in_show">
+                <input type="hidden" name="post_id" value="<%= post.id %>">
+                <input type="submit" class="btn btn-sm btn-primary" value="Like">
+              </form>
+            <% end %>
+              <p class="text-center">Likes: <%= post.total_likes %></p>
+
+        <% end %>
+
+        <a href="/posts/edit/<%= post.id %>"> Edit task</a>
+
+          
+      </li>
+    <% end %>
+  </ul>
+
+</div>
+<% end %>

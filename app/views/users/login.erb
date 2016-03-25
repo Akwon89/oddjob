@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Please Login<small></small></h1>
+</div>
+<hr/>
+
+
+<% if @user && @user.errors.any? %>
+  <div>
+    <strong>Some issues with your log in, please fix them:</strong>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/users/login">
+  <div>
+    <label for="basic-url">Username: </label>
+    <input type="text" name="username"/> 
+  </div>
+  <div>
+    <label for="basic-url">Password: </label>
+    <input type="password" name="password"/> 
+  </div>
+  <div>
+      <input type="submit" />
+  </div>
+</form>
+
+<p>Not a registered user?<a href='/users/new'>Sign up here!</a></p>

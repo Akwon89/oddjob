@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>Edit a Task!</h1>
+</div>
+<hr/>
+
+
+
+  <form method="post" action="/posts/edit" >
+    <div>
+      <label>Task: </label>
+      <input type="text" name="post_title" value='<%= @post.post_title %>'>
+    </div>
+    <div>
+      <label>Offering: </label>
+      <input type="text" name="description" value='<%= @post.description %>'> 
+    </div>
+    <div>
+      <label>To Be Completed: </label>
+      <input type="date" name="date" value='<%= @post.date%>'> 
+    </div>
+    <div>
+      <label>Location: </label>
+      <input type="text" name="location" value='<%= @post.location %>'> 
+    </div>
+    <div>
+      <label>Upload a Picture (Optional):</label>
+      <input type="text" name="post_pic" value='<%= @post.post_pic %>'> 
+    </div>
+      <input type="hidden" name="id" value="<%= @post.id %>">
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+

@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1>Post a Task!</h1>
+</div>
+<hr/>
+
+<%if current_user %>
+
+  <form method="post" action="/posts/new" >
+    <div>
+      <label>Task: </label>
+      <input type="text" name="post_title">
+    </div>
+    <div>
+      <label>Offering: </label>
+      <input type="text" name="description"> 
+    </div>
+    <div>
+      <label>To Be Completed: </label>
+      <input type="date" name="date"> 
+    </div>
+    <div>
+      <label>Location: </label>
+      <input type="text" name="location"> 
+    </div>
+    <div>
+      <label>Upload a Picture (Optional):</label>
+      <input type="text" name="post_pic"> 
+    </div>
+    <div>
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+
+<% else %>
+  flash[:danger] = 'You must login to create a post!'
+  <% redirect '/users/login' %>
+
+<% end %>

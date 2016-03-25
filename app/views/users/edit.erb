@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1>Edit Your Profile, <%= current_user.first_name %></h1>
+</div>
+<hr/>
+
+<form method="post" action="/users/edit" >
+  <div>
+    <label for="basic-url">First Name: </label>
+    <input type="text" name="first_name" value='<%= current_user.first_name %>'>
+  </div>
+  <div>
+    <label for="basic-url">Last Name: </label>
+    <input type="text" name="last_name" value='<%= current_user.last_name %>'> 
+  </div>
+  <div>
+    <label for="basic-url">Username: </label>
+    <input type="text" name="username" value='<%= current_user.username %>'> 
+  </div>
+  <div>
+    <label for="basic-url">Email: </label>
+    <input type="text" name="email" value='<%= current_user.email %>'> 
+  </div>
+  <div>
+    <label for="basic-url">Password:</label>
+    <input type="password" name="password" value='<%= current_user.password %>'> 
+  </div>
+  <div>
+    <label for="basic-url">Location: </label>
+    <input type="text" name="location" value='<%= current_user.location %>'> 
+  </div>
+  <div>
+    <label for="basic-url">About Me: </label>
+    <input type="text" name="about_you"value='<%= current_user.about_you %>'> 
+  </div>
+  <div>
+    <label for="basic-url">Upload a Profile Photo:</label>
+    <input type="text" name="user_pic" value='<%= current_user.user_pic %>'> 
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>

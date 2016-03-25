@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1>Sign Up!</h1>
+</div>
+<hr/>
+
+<% if @user && @user.errors.any? %>
+  <div>
+    <strong>Some issues with your signup info, please fix them:</strong>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
+<form method="post" action="/users/new" >
+  <div>
+    <label for="basic-url">First Name: </label>
+    <input type="text" name="first_name">
+  </div>
+  <div>
+    <label for="basic-url">Last Name: </label>
+    <input type="text" name="last_name"> 
+  </div>
+  <div>
+    <label for="basic-url">Username: </label>
+    <input type="text" name="username"> 
+  </div>
+  <div>
+    <label for="basic-url">Email: </label>
+    <input type="text" name="email"> 
+  </div>
+  <div>
+    <label for="basic-url">Password:</label>
+    <input type="password" name="password"> 
+  </div>
+  <div>
+    <input type="submit" value="Submit">
+  </div>
+</form>

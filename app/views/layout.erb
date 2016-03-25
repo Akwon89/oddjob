@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/stylesheets/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/stylesheets/application.css">
+
+  
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<title>Oddjob</title>
+</head>
+<body >
+  
+  <div class='navbar navbar-default navbar-static-top'>
+    <div class='container'>
+      <div class='navbar-header'>
+                                <!-- makes menu bar a drop down when in mobile -->
+        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#example'>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+        <a href='/' class='navbar-brand'>Oddjob</a>
+      </div>
+      <div class='collapse navbar-collapse pull-right' id='example'>
+        <% if current_user %>
+          <ul class='nav navbar-nav'>
+            <li><a href='/users/profile'>Profile</a></li>
+            <li><a href='/posts/new'>Create a Post</a></li>
+          </ul>
+​
+          <a href='/users/logout' class='btn btn-primary navbar-btn'>Log Out</a>
+        <% else %>
+          <a href='/users/login' class='btn btn-primary navbar-btn'>Log In</a>
+          <a href='/users/new' class='btn btn-success navbar-btn'>Sign Up</a>
+        <% end %>
+                                                <!-- can move to right too -->
+      </div>
+    </div>
+  </div>
+  <div >
+  
+  <div class="container">
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "alert alert-#{key}" %>
+    <% end %>
+    <%= yield %>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/javascript/application.js"></script>
+</body>
+</html>
