@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_one :postpic
   has_many :likes
-  # has_many :messages
+
   
   validates :post_title, presence: true
   validates :location, presence: true

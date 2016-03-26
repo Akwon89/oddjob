@@ -192,7 +192,7 @@ end
 
 get '/messages/new' do
   # @message = Message.new
-  unless params[:post_id].nil?
+  unless params[:post_id].nil? && @post_info
     @post_info ={
       post_id: params[:post_id],
       post_name: params[:post_name],
@@ -215,12 +215,23 @@ post '/messages/new' do
   if @message.save
     redirect '/home'
   else
-    erb :'/'
+    @post_info ={
+      post_id: params[:post_id],
+      post_name: params[:subject],
+      recipient_id: params[:recipient_id]
+    }
+    erb :'/messages/new'
   end
 end
 
 get '/messages/all' do
   @messages = Message.where(recipient_id: current_user.id)
   erb :'/messages/all'
+end
+
+post '/messages/delete/:id' do
+  @message= Message.find params[:id]
+  @message.destroy!
+  redirect '/messages/all'
 end
 

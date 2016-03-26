@@ -12,6 +12,9 @@
           <input type="hidden" name="recipient_id" value="<%= message.sender_id %>">
           <input type="submit" class="btn btn-sm btn-primary" value=" Reply">
         </form>
+        <form method='post' action="/messages/delete/<%= message.id %>">
+          <input type="submit" class="btn btn-sm btn-danger" value=" DELETE">
+        </form>
       </div>
     </li>
   <% end %>
