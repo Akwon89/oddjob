@@ -14,6 +14,9 @@
         <h5>Location: <%= post.location %></h5>
         <h6>Target Completion Date: <%= post.date %></h6>
         <p><%= post.description %></p>
+          <% unless post.post_pic.nil? %>
+            <img src="<%= post.post_pic %>"/>
+          <% end %>
       </div>
       <% if current_user %>
           <% if post.likes.find { |l| l.user_id == current_user.id }%>

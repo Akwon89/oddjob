@@ -3,7 +3,7 @@
 </div>
 <hr/>
 
-<form method="post" action="/users/edit" >
+<form method="post" action="/users/edit" enctype="multipart/form-data">
   <div>
     <label for="basic-url">First Name: </label>
     <input type="text" name="first_name" value='<%= current_user.first_name %>'>
@@ -34,8 +34,12 @@
   </div>
   <div>
     <label for="basic-url">Upload a Profile Photo:</label>
-    <input type="text" name="user_pic" value='<%= current_user.user_pic %>'> 
+      <% unless current_user.user_pic.nil? %>
+      <img src="<%= current_user.user_pic %>"/>
+      <% end %>
+      <input type="file" name="file">
   </div>
+  <br/>
   <div>
     <input type="submit" value="Submit">
   </div>

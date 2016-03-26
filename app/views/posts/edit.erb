@@ -5,7 +5,7 @@
 
 
 
-  <form method="post" action="/posts/edit" >
+  <form method="post" action="/posts/edit" enctype="multipart/form-data">
     <div>
       <label>Task: </label>
       <input type="text" name="post_title" value='<%= @post.post_title %>'>
@@ -24,7 +24,10 @@
     </div>
     <div>
       <label>Upload a Picture (Optional):</label>
-      <input type="text" name="post_pic" value='<%= @post.post_pic %>'> 
+      <% unless @post.post_pic.nil? %>
+        <img src="<%= @post.post_pic %>"/>
+      <% end %>
+      <input type="file" name="file">
     </div>
       <input type="hidden" name="id" value="<%= @post.id %>">
     <div>

@@ -61,13 +61,23 @@ end
 
 post '/users/edit' do
   @user = current_user
+
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+                      #users id.jpg
+  File.open("./public/user_pics/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
   if @user
     @user.update_attributes(
       first_name: params[:first_name],
       last_name: params[:last_name],
       username: params[:username],
       email: params[:email],
-      password:  params[:password]
+      password:  params[:password],
+      about_you: params[:about_you],
+      location: params[:location],
+      user_pic: "/user_pics/#{@filename}"
     )
     if @user.save!
       redirect '/users/profile'
@@ -113,13 +123,19 @@ end
 
 post '/posts/edit' do
   @post = Post.find params[:id]
+  @filename = params[:file][:filename]
+  file = params[:file][:tempfile]
+                      #users id.jpg
+  File.open("./public/post_pics/#{@filename}", 'wb') do |f|
+    f.write(file.read)
+  end
   if @post
     @post.update_attributes(
       post_title: params[:post_title],
       description: params[:description],
       date:  params[:date],
       location:  params[:location],
-      post_pic:  params[:post_pic]
+      post_pic: "/post_pics/#{@filename}"
     )
     if @post.save!
       redirect '/users/profile'
@@ -170,5 +186,5 @@ post '/liked_in_show' do
   @like.save
   redirect "/users/profile"
 end
-
+#########
 
