@@ -9,7 +9,6 @@
     <li class="list-group-item">
       <div class="post">
         <h3><a href="/posts/<%= post.id %>"><%= post.post_title %></a></h3>
-        <p>When we get Image working</p>
         <h4>Posted by: <%= User.find(post.user_id) %></h4>
         <h5>Location: <%= post.location %></h5>
         <h6>Target Completion Date: <%= post.date %></h6>
@@ -32,6 +31,12 @@
             </form>
           <% end %>
             <p class="text-center">Likes: <%= post.total_likes %></p>
+            <form method="get" action="/messages/new">
+              <input type="hidden" name="post_id" value="<%= post.id %>">
+              <input type="hidden" name="post_name" value="<%= post.post_title %>">
+              <input type="hidden" name="recipient_id" value="<%= post.user_id %>">
+              <input type="submit" class="btn btn-sm btn-primary" value="Message">
+            </form>
       <% end %>
     </li>
   <% end %>

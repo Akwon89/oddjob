@@ -1,0 +1,19 @@
+<ul class="list-group">
+  <% @messages.each do |message| %>
+    <li class="list-group-item">
+      <div class="post" >
+        <h3>Subject: <%= message.subject %></h3>
+        <h4>sent by: <%= message.sender_id %></h4>
+        <h5>message: <%= message.text %></h5>
+        <h6>sent at: <%= message.created_at %></h6>
+        <form method="get" action="/messages/new">
+          <input type="hidden" name="post_id" value="<%=message.post_id %>">
+          <input type="hidden" name="post_name" value="<%= message.subject %>">
+          <input type="hidden" name="recipient_id" value="<%= message.sender_id %>">
+          <input type="submit" class="btn btn-sm btn-primary" value=" Reply">
+        </form>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
