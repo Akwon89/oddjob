@@ -64,6 +64,10 @@
         <% end %>
 
         <a href="/posts/edit/<%= post.id %>"> Edit task</a>
+        </form>
+        <form method='post' action="/post/delete/<%= post.id %>">
+          <input type="submit" class="btn btn-sm btn-danger" value=" DELETE">
+        </form>
 
           
       </li>

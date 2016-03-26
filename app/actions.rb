@@ -145,6 +145,11 @@ post '/posts/edit' do
   end
 end
 
+post '/post/delete/:id' do
+  @post= Post.find params[:id]
+  @post.destroy!
+  redirect '/users/profile'
+end
 
 # display all the posts / homepage
 get '/home' do
