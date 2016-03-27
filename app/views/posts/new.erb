@@ -3,28 +3,39 @@
 </div>
 <hr/>
 
+<% if @post && @post.errors.any? %>
+  <div>
+    <strong>Some issues with your signup info, please fix them:</strong>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
 <%if current_user %>
 
-  <form method="post" action="/posts/new" >
+  <form method="post" action="/posts/new" enctype="multipart/form-data">
     <div>
       <label>Task: </label>
-      <input type="text" name="post_title">
+      <input type="text" name="post_title" value="<%= @post.post_title %>">
     </div>
     <div>
       <label>Offering: </label>
-      <input type="text" name="description"> 
+      <input type="text" name="description" value="<%= @post.description %>"> 
     </div>
     <div>
       <label>To Be Completed: </label>
-      <input type="date" name="date"> 
+      <input type="date" name="date" value="<%= @post.date %>"> 
     </div>
     <div>
       <label>Location: </label>
-      <input type="text" name="location"> 
+      <input type="text" name="location" value="<%= @post.post_title%>"> 
     </div>
     <div>
       <label>Upload a Picture (Optional):</label>
-      <input type="text" name="post_pic"> 
+      <input type="file" name="file" value="<%= @post.post_pic %>"> 
     </div>
     <div>
       <input type="submit" value="Submit">

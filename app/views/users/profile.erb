@@ -23,9 +23,14 @@
  <%= current_user.about_you %>
 </p>
 
+
 <p>
  <strong>Profile photo:</strong>
+ <% unless current_user.user_pic.nil? %>
  <img src="<%= current_user.user_pic %>">
+ <% else %>
+ <img src="/user_pics/default-profile.gif">
+ <% end %>
 </p>
 
 <a href="/users/edit"> Edit Profile</a>
@@ -45,6 +50,11 @@
           <h5>Location: <%= post.location %></h5>
           <h6>Target Completion Date: <%= post.date %></h6>
           <p><%= post.description %></p>
+          <% unless post.post_pic.nil? %>
+          <img src="<%= post.post_pic %>">
+        <% else %>
+          <img src="/post_pics/default_task.jpg">
+        <% end %>
         </div>
         <% if current_user %>
             <% if post.likes.find { |l| l.user_id == current_user.id }%>

@@ -3,9 +3,14 @@
     <li class="list-group-item">
       <div class="post" >
         <h3>Subject: <%= message.subject %></h3>
-        <h4>sent by: <%= message.sender_id %></h4>
+        <h4>sent by: <%= (User.find(message.sender_id)).username %></h4>
+        <% unless (User.find(message.sender_id)).user_pic.nil? %>
+          <img src="<%= (User.find(message.sender_id)).user_pic %>">
+        <% else %>
+          <img src="/user_pics/default-profile.gif">
+        <% end %>
         <h5>message: <%= message.text %></h5>
-        <h6>sent at: <%= message.created_at %></h6>
+        <h6>sent at: <%= (message.created_at).to_formatted_s(:long) %></h6>
         <form method="get" action="/messages/new">
           <input type="hidden" name="post_id" value="<%=message.post_id %>">
           <input type="hidden" name="post_name" value="<%= message.subject %>">

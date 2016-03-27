@@ -42,7 +42,7 @@
         <% if current_user %>
           <ul class='nav navbar-nav'>
             <li><a href='/users/profile'>Profile</a></li>
-            <li><a href='/posts/new'>Create a Post</a></li>
+            <li><a href='/posts/new'>Create a Task</a></li>
             <li><a href='/messages/all'>Messages</a></li>
           </ul>
 ​
@@ -58,9 +58,6 @@
   <div >
   
   <div class="container">
-    <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "alert alert-#{key}" %>
-    <% end %>
     <%= yield %>
   </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

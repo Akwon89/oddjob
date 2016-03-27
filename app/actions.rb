@@ -90,6 +90,7 @@ end
 #################
 
 get '/posts/new' do
+  @post=Post.new
   erb :'posts/new'
 end
 

@@ -8,13 +8,20 @@
   <% @posts.each do |post| %>
     <li class="list-group-item">
       <div class="post">
-        <h3><a href="/posts/<%= post.id %>"><%= post.post_title %></a></h3>
+        <h3><%= post.post_title %></h3>
         <h4>Posted by: <%= (User.find(post.user_id)).username %></h4>
+        <% unless (User.find(post.user_id)).user_pic.nil? %>
+          <img src="<%= (User.find(post.user_id)).user_pic %>">
+        <% else %>
+          <img src="/user_pics/default-profile.gif">
+        <% end %>
         <h5>Location: <%= post.location %></h5>
         <h6>Target Completion Date: <%= post.date %></h6>
         <p><%= post.description %></p>
           <% unless post.post_pic.nil? %>
-            <img src="<%= post.post_pic %>"/>
+            <img src="<%= post.post_pic %>">
+          <% else %>
+            <img src="/post_pics/default_task.jpg">
           <% end %>
       </div>
       <% if current_user %>
