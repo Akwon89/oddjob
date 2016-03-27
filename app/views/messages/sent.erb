@@ -12,9 +12,9 @@
     <li class="list-group-item">
       <div class="post" >
         <h3>Subject: <%= message.subject %></h3>
-        <h4>sent by: <%= (User.find(message.sender_id)).username %></h4>
-        <% unless (User.find(message.sender_id)).user_pic.nil? %>
-          <img src="<%= (User.find(message.sender_id)).user_pic %>">
+        <h4>sent to: <%= (User.find(message.recipient_id)).username %></h4>
+        <% unless (User.find(message.recipient_id)).user_pic.nil? %>
+          <img src="<%= (User.find(message.recipient_id)).user_pic %>">
         <% else %>
           <img src="/user_pics/default-profile.gif">
         <% end %>

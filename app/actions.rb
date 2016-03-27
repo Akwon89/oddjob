@@ -236,6 +236,11 @@ get '/messages/all' do
   erb :'/messages/all'
 end
 
+get '/messages/sent' do
+  @messages = Message.where(sender_id: current_user.id)
+  erb :'/messages/sent'
+end
+
 post '/messages/delete/:id' do
   @message= Message.find params[:id]
   @message.destroy!
