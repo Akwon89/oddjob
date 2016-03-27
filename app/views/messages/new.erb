@@ -18,20 +18,17 @@
 
 
 <form method="post" action="/messages/new" >
-  <% unless @post_info.nil? %>
     <input type="hidden" name="post_id" value="<%= @post_info[:post_id] %>">
     <input type="hidden" name="subject" value="<%= @post_info[:post_name] %>">
     <input type="hidden" name="recipient_id" value="<%= @post_info[:recipient_id] %>">
-  <% else %>
-    <div>
-      <label>Subject: </label>
-      <input type="text" name="subject">
-    </div>
-  <% end %>
+    <h3>Subject: <%= @post_info[:post_name] %></h3>
+    
+    <h5>To: <%= (User.find(@post_info[:recipient_id])).username %></h5>
     <div>
       <label>text: </label>
       <input type="text" name="text"> 
     </div>
+
     <div>
       <input type="submit" value="Submit">
     </div>

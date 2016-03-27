@@ -197,7 +197,8 @@ end
 
 get '/messages/new' do
   # @message = Message.new
-  unless params[:post_id].nil? && @post_info
+  # && @post_info
+  unless params[:post_id].nil?
     @post_info ={
       post_id: params[:post_id],
       post_name: params[:post_name],
